@@ -1,10 +1,12 @@
 package com.GUIProject.StudentRegister;
 
+import com.GUIProject.StudentRegister.GUIMenuBar.views.HomeView;
+
 public class MainApp {
 
     public static void main(String[] args) {
-        RegisterView registerView = new RegisterView();
-        RegisterController registerController = new RegisterController(registerView);
+
+        HomeView homeView = new HomeView();
 
     }
 }
