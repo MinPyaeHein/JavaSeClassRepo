@@ -1,5 +1,7 @@
 package com.JDBC;
 
+import com.JDBC.Dao.ConnectionDao;
+import com.JDBC.Dao.GeneralDao;
 import com.JDBC.Model.Employee;
 
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.util.List;
 
 public class EmployeeDao {
     private ConnectionDao connectionDao;
+    private GeneralDao generalDao;
     public EmployeeDao() {
         this.connectionDao =new ConnectionDao();
     }
@@ -17,6 +20,30 @@ public class EmployeeDao {
                 + "id SERIAL PRIMARY KEY, "
                 + "name VARCHAR(100), "
                 + "phone VARCHAR(15), "
+                + "address TEXT)";
+        try {
+            Connection c=this.connectionDao.connectionWithPgSqlDb2();
+            Statement statement =c.createStatement();
+            statement.execute(createTableSQL);
+            statement.close();
+            c.close();
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+    public boolean createTeacherTable(){
+        String createTableSQL = "CREATE TABLE teacher ("
+                + "id SERIAL PRIMARY KEY, "
+                + "name VARCHAR(100), "
+                + "phone VARCHAR(15), "
+                + "department VARCHAR(15), "
+                + "position VARCHAR(15), "
                 + "address TEXT)";
         try {
             Connection c=this.connectionDao.connectionWithPgSqlDb2();
@@ -98,5 +125,6 @@ public class EmployeeDao {
         }
         return employees;
     }
+
 
 }

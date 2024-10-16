@@ -1,4 +1,4 @@
-package com.JDBC.Model;
+package com.JDBC_V1.JDBC.Model;
 
 public class Employee extends Person {
 
