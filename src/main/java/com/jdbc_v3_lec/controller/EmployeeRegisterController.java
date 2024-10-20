@@ -1,19 +1,13 @@
-package com.jdbc_v2.controller;
+package com.jdbc_v3_lec.controller;
 
 
-import com.jdbc_v2.model.Employee;
-import com.jdbc_v2.service.EmployeeService;
-import com.jdbc_v2.view.EmployeeRegisterView;
+import com.jdbc_v3_lec.model.Employee;
+import com.jdbc_v3_lec.service.EmployeeService;
+import com.jdbc_v3_lec.view.EmployeeRegisterView;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
-
 
 
 public class EmployeeRegisterController {

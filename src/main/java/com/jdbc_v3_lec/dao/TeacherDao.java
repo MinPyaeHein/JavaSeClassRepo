@@ -1,6 +1,6 @@
-package com.jdbc_v2.dao;
+package com.jdbc_v3_lec.dao;
 
-import com.jdbc_v2.model.Teacher;
+import com.jdbc_v3_lec.model.Teacher;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +8,10 @@ import java.util.List;
 
 
 public class TeacherDao extends GeneralDao<Teacher> {
+
+	public TeacherDao() {
+		super(Teacher.class);
+	}
 
 	@Override
 	public Teacher convertToObject(ResultSet rs) {

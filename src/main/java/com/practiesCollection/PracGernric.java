@@ -1,4 +1,4 @@
-package com.practies;
+package com.practiesCollection;
 
 public class PracGernric {
     //Cause1

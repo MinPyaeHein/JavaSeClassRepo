@@ -1,8 +1,8 @@
-package com.jdbc_v2.controller;
+package com.jdbc_v3_lec.controller;
 
-import com.jdbc_v2.view.EmployeeRegisterView;
-import com.jdbc_v2.view.MainFrame;
-import com.jdbc_v2.view.TeacherRegisterView;
+import com.jdbc_v3_lec.view.EmployeeRegisterView;
+import com.jdbc_v3_lec.view.MainFrame;
+import com.jdbc_v3_lec.view.TeacherRegisterView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

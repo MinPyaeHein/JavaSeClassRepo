@@ -1,10 +1,15 @@
-package com.jdbc_v2.model;
+package com.jdbc_v3.model;
 
+import com.jdbc_v3.Annotation.Column;
+import com.jdbc_v3.Annotation.Table;
+
+@Table(name = "teacher")
 public class Teacher extends Person {
     public Teacher() {
-
     }
+    @Column(name = "department")
     private String department;
+    @Column(name = "position")
     private String position;
 
     public Teacher(String name, String phone, String address, String department,String position) {

@@ -1,6 +1,6 @@
-package com.jdbc_v2.view;
+package com.jdbc_v3.view;
 
-import com.jdbc_v2.service.EmployeeService;
+import com.jdbc_v3.service.EmployeeService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

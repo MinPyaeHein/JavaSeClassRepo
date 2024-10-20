@@ -1,6 +1,10 @@
-package com.jdbc_v2.dao;
+package com.jdbc_v3_lec.dao;
+
+import com.jdbc_v3.Util.ReflectionUtil;
+import com.jdbc_v3_lec.Util.Util;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,12 +14,14 @@ import java.util.List;
 
 public abstract class GeneralDao<T> {
 	private ConnectionDao connectionDao;
-	
+	private Class<T> currentEntity;
 	public abstract T convertToObject(ResultSet rs);
 	
-	public GeneralDao() {
+
+	public GeneralDao(Class<T> currentEntity) {
+		this.currentEntity = currentEntity;
 		this.connectionDao = new ConnectionDao();
-    }
+	}
 	
 	//execute
 	public boolean execute(String sql, Object ...value) {
@@ -73,11 +79,24 @@ public abstract class GeneralDao<T> {
 	}
 	
     public List<T> getAll(){
-		System.out.println("this Class name");
-		String sql = "SELECT * FROM ";
-//		List<T> objects = executeQuery(sql);
-		return null;
+		String sql = "SELECT * FROM "+(this.currentEntity.getSimpleName().toLowerCase());
+		List<T> objects = executeQuery(sql);
+
+		return objects;
 	}
+	public void updateTest(T entity){
+		String sql = "UPDATE "+(this.currentEntity.getSimpleName().toLowerCase())+" SET ";
+		List<String> fields = Util.getAllColumnField(entity.getClass());
+
+		for(String field : fields){
+			sql+=field+"=?, ";
+		}
+		sql=sql.substring(0, sql.length()-2);
+		sql+=" WHERE "+ Util.getAllIdField(entity.getClass()).get(0)+"=?";
+		System.out.println(sql);
+        execute(sql,Util.getFieldValues(entity));
+	}
+
 
 
 	}

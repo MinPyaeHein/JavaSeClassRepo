@@ -1,5 +1,8 @@
-package com.jdbc_v2.model;
+package com.jdbc_v3_lec.model;
 
+import com.jdbc_v3_lec.annotation.Table;
+
+@Table(name = "employees")
 public class Employee extends Person {
 
     public Employee(String name, String phone, String address) {

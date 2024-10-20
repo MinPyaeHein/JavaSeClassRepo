@@ -1,4 +1,4 @@
-package com.jdbc_v2.view;
+package com.jdbc_v3.view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

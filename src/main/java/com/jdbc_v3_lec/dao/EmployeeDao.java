@@ -1,6 +1,6 @@
-package com.jdbc_v2.dao;
+package com.jdbc_v3_lec.dao;
 
-import com.jdbc_v2.model.Employee;
+import com.jdbc_v3_lec.model.Employee;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +8,9 @@ import java.util.List;
 
 
 public class EmployeeDao extends GeneralDao<Employee> {
+	public EmployeeDao() {
+        super(Employee.class);
+    }
 	private ConnectionDao connectionDao;
 
 	@Override
@@ -54,11 +57,7 @@ public class EmployeeDao extends GeneralDao<Employee> {
         return executeQuery(selectTableSQL, id).get(0);
 	}
 	
-	public List<Employee> getEmployees(){
-		String selectTableSQL = "SELECT * FROM employee";
-		getAll();
-		return executeQuery(selectTableSQL);
-	}
+
 
 
 	

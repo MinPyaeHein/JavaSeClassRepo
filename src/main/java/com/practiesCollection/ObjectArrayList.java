@@ -1,23 +1,23 @@
-package com.practies;
+package com.practiesCollection;
 
 import java.util.Arrays;
 
-public class IntegerArrayList {
-    private Integer[] arr;
+public class ObjectArrayList {
+    private Object[] arr;
     private int size;
-    public IntegerArrayList() {
-        this.arr = new Integer[10];
+    public ObjectArrayList() {
+        this.arr = new Object[10];
         this.size = 0;
     }
-    public void add(Integer str) {
+    public void add(Object str) {
         if(size >= arr.length) {
-            Integer[] temp = new Integer[arr.length * 2];
+            Object[] temp = new Object[arr.length * 2];
             System.arraycopy(arr, 0, temp, 0, arr.length);
             this.arr = temp;
         }
         this.arr[size++] = str;
     }
-    public Integer get(int index) {
+    public Object get(int index) {
         if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index");
         }
@@ -25,8 +25,8 @@ public class IntegerArrayList {
     }
     @Override
     public String toString() {
-        Integer[] temp = Arrays.copyOf(arr, size);
-        return "IntegerArrayList{" +
+        Object[] temp = Arrays.copyOf(arr, size);
+        return "ObjectArrayList{" +
                 "arr=" +Arrays.toString(temp)+
                 ", size=" + size +
                 '}';

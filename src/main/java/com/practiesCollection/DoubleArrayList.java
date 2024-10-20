@@ -1,23 +1,23 @@
-package com.practies;
+package com.practiesCollection;
 
 import java.util.Arrays;
 
-public class EmployeeArrayList {
-    private Employee[] arr;
+public class DoubleArrayList {
+    private Double[] arr;
     private int size;
-    public EmployeeArrayList() {
-        this.arr = new Employee[10];
+    public DoubleArrayList() {
+        this.arr = new Double[10];
         this.size = 0;
     }
-    public void add(Employee emp) {
+    public void add(Double str) {
         if(size >= arr.length) {
-            Employee[] temp = new Employee[arr.length * 2];
+            Double[] temp = new Double[arr.length * 2];
             System.arraycopy(arr, 0, temp, 0, arr.length);
             this.arr = temp;
         }
-        this.arr[size++] = emp;
+        this.arr[size++] = str;
     }
-    public Employee get(int index) {
+    public Double get(int index) {
         if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index");
         }
@@ -25,8 +25,8 @@ public class EmployeeArrayList {
     }
     @Override
     public String toString() {
-        Employee[] temp = Arrays.copyOf(arr, size);
-        return "EmployeeArrayList{" +
+        Double[] temp = Arrays.copyOf(arr, size);
+        return "DoubleArrayList{" +
                 "arr=" +Arrays.toString(temp)+
                 ", size=" + size +
                 '}';

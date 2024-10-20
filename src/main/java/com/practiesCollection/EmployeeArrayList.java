@@ -1,33 +1,32 @@
-package com.practies;
+package com.practiesCollection;
 
 import java.util.Arrays;
 
-public class StringArrayList {
-    private String[] arr;
+public class EmployeeArrayList {
+    private Employee[] arr;
     private int size;
-    public StringArrayList() {
-        this.arr = new String[10];
+    public EmployeeArrayList() {
+        this.arr = new Employee[10];
         this.size = 0;
     }
-    public void add(String str) {
+    public void add(Employee emp) {
         if(size >= arr.length) {
-            String[] temp = new String[arr.length * 2];
+            Employee[] temp = new Employee[arr.length * 2];
             System.arraycopy(arr, 0, temp, 0, arr.length);
             this.arr = temp;
         }
-        this.arr[size++] = str;
+        this.arr[size++] = emp;
     }
-    public String get(int index) {
+    public Employee get(int index) {
         if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Invalid index");
         }
         return this.arr[index];
     }
-
     @Override
     public String toString() {
-       String[] temp = Arrays.copyOf(arr, size);
-        return "StringArrayList{" +
+        Employee[] temp = Arrays.copyOf(arr, size);
+        return "EmployeeArrayList{" +
                 "arr=" +Arrays.toString(temp)+
                 ", size=" + size +
                 '}';

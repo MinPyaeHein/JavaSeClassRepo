@@ -1,9 +1,8 @@
-package com.practies;
+package com.practiesCollection;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import java.util.function.Function;
 
 public class Prac01 {
     public static void main (String[] args) {
