@@ -1,4 +1,4 @@
-package com.jdbc_v3_lec.annotation;
+package com.jdbc_v1_practice.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(value = ElementType.FIELD)
+@Target(ElementType.FIELD)
 public @interface Id {
-  String name();
+    String name();
 }

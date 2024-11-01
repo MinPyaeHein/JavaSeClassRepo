@@ -1,5 +1,7 @@
 package com.jdbc_v3.Util;
 
+import com.jdbc_v3.Annotation.Column;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,5 +19,29 @@ public class ReflectionUtil {
         }
         return fields;
     }
+    public static Object[] getFieldValues(Object t) {
+        List<Field> fields = ReflectionUtil.getAllFields(t.getClass());
+
+        List<Object> values = new ArrayList<>();
+        try {
+            for (Field field : fields) {
+                if (field.isAnnotationPresent(Column.class)) {
+                    field.setAccessible(true);
+                    values.add(field.get(t));
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return values.toArray();
+    }
+    public static String getFieldColumName(Field field) {
+            if (field.isAnnotationPresent(Column.class)) {
+                Column column = field.getAnnotation(Column.class);
+                return column.name();
+            }
+     return null;
+    }
+
 
 }

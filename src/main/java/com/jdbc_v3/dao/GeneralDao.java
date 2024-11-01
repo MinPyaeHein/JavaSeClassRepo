@@ -28,7 +28,7 @@ public abstract class GeneralDao<T> {
 	public boolean save(T t) {
 		String sql = generateInsertQuery(t);
 		System.out.println(sql);
-		return executeUpdate(sql, getFieldValues(t));
+		return executeUpdate(sql, ReflectionUtil.getFieldValues(t));
 	}
 
 	// Find by ID (dynamically generates SQL select query)
@@ -49,7 +49,7 @@ public abstract class GeneralDao<T> {
 	// Update method (dynamically generates SQL update based on annotations)
 	public boolean update(T t) {
 		String sql = generateUpdateQuery(t);
-		return executeUpdate(sql, getFieldValues(t));
+		return executeUpdate(sql, ReflectionUtil.getFieldValues(t));
 	}
 
 	// Delete by ID
@@ -126,26 +126,6 @@ public abstract class GeneralDao<T> {
 		}
 	}
 
-	// Get field values using reflection and the @Column annotation
-	private Object[] getFieldValues(T t) {
-		List<Field> fields = ReflectionUtil.getAllFields(t.getClass());
-
-		List<Object> values = new ArrayList<>();
-		try {
-			for (Field field : fields) {
-				System.out.println("Field " + field.getName() + "");
-				if (field.isAnnotationPresent(Column.class)) {
-					Column column = field.getAnnotation(Column.class);
-					System.out.println("Column " + column.name() + "");
-					field.setAccessible(true);
-					values.add(field.get(t));
-				}
-			}
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return values.toArray();
-	}
 
 	// Generate INSERT query using @Table and @Column annotations
 	private String generateInsertQuery(T t) {
@@ -154,10 +134,11 @@ public abstract class GeneralDao<T> {
 
 		Field[] fields = ReflectionUtil.getAllFields(t.getClass()).toArray(new Field[0]);
 		for (Field field : fields) {
-			if (field.isAnnotationPresent(Column.class)) {
-				Column column = field.getAnnotation(Column.class);
-				query.append(column.name()).append(", ");
+			String column=ReflectionUtil.getFieldColumName(field);
+			if(column!=null){
+				query.append(column).append(", ");
 			}
+
 		}
 		query.delete(query.length() - 2, query.length()); // Remove last comma
 		query.append(") VALUES (");
