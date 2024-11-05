@@ -15,7 +15,9 @@ public class Book {
     @Column(name="desc")
     private String description;
 
-
+    public Book(Integer id){
+        this.id = id;
+    }
     public Book(Integer id, String name, String author, String description) {
         this.id = id;
         this.name = name;

@@ -34,6 +34,7 @@ public class BookService implements Service<Book> {
 
     @Override
     public Book getById(int id) {
-        return bookDao.selectById(id);
+        Book book = new Book(id);
+        return bookDao.selectById(book);
     }
 }

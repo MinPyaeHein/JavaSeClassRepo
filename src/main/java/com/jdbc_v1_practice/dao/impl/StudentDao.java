@@ -5,7 +5,7 @@ import com.jdbc_v1_practice.modal.Student;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StudentDao extends GeneralDao4<Student> {
+public class StudentDao extends GeneralDao5<Student> {
 
     public StudentDao() {
         super(Student.class);
@@ -25,6 +25,11 @@ public class StudentDao extends GeneralDao4<Student> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void insert(Student student) {
+        System.out.println("insert student customize");
+        String sql = "INSERT INTO students (name, email, phone, address, major_id) VALUES (?,?,?,?,?)";
+        executeUpdate(sql, student.getName(), student.getEmail(), student.getPhone(), student.getAddress(),student.getMajor().getId());
     }
 
 }

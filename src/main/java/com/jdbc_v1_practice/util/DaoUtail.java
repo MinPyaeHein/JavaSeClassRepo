@@ -21,11 +21,14 @@ public class DaoUtail {
             String fieldName = null;
             if (idAnnotation != null) {
                 fieldName = idAnnotation.name();
+                System.out.println("fieldName: " + fieldName);
             } else if (columnAnnotation != null) {
                 fieldName = columnAnnotation.name();
             }
+            System.out.println("is exist in the listfield: "+listFields.contains(fieldName));
             if(need){
                 if(listFields.contains(fieldName)){
+
                     filteredFields.add(field);
                 }
             }else{
@@ -34,6 +37,7 @@ public class DaoUtail {
                 }
             }
         }
+        System.out.println("filteredFields.size:"+filteredFields.size());
         return filteredFields;
     }
 }

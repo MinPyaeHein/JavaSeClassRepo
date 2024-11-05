@@ -16,13 +16,27 @@ public class Student {
     private String phone;
     @Column(name="address")
     private String address;
+    @Column(name="major")
+    private Major major;
 
+    public Student(String name, String email, String phone, String address, Major major) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.major = major;
+        this.major.setStudent(this);
+    }
     public Student(Integer id,String name, String email, String phone, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
+    }
+
+    public Student(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,6 +71,22 @@ public class Student {
         this.address = address;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -66,4 +96,6 @@ public class Student {
                 ", address='" + address + '\'' +
                 '}';
     }
+
+
 }

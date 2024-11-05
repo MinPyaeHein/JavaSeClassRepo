@@ -1,22 +1,26 @@
-package com.jdbc_v1_practice.dao.impl;
+package com.jdbc_v1_practice.dao.old;
 
 import com.jdbc_v1_practice.annotation.Column;
 import com.jdbc_v1_practice.annotation.Id;
 import com.jdbc_v1_practice.annotation.Table;
 import com.jdbc_v1_practice.dao.GeneralDao;
+import com.jdbc_v1_practice.dao.impl.ConnectionDao;
 import com.jdbc_v1_practice.util.DaoUtail;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class GeneralDao4<T> implements GeneralDao<T> {
+public abstract class GeneralDao5<T> implements GeneralDao<T> {
     public ConnectionDao connectionDao;
     private Class<T> classType;
     private String tableName;
-    public GeneralDao4(Class<T> classType) {
+    public GeneralDao5(Class<T> classType) {
         this.classType = classType;
         connectionDao = new ConnectionDao();
         this.tableName=classType.getAnnotation(Table.class).name();
@@ -39,17 +43,26 @@ public abstract class GeneralDao4<T> implements GeneralDao<T> {
     @Override
     //DElete Row
     public void delete(T obj) {
-
-        String sql = "DELETE FROM " + this.tableName +" WHERE id = ?";
+        String idColumn=getColumnName(obj,"Id");
+        String sql = "DELETE FROM " + this.tableName +" WHERE "+idColumn+" = ?";
         System.out.println("Constructed Query: " + sql);
         executeUpdate("delete",obj,sql,"id");
 
     }
     @Override
     //select by id
-    public T selectById(int id) {
-        String query  = "SELECT  * From " + this.tableName + " where id = ?";
-        List<T> list=executeQuerry(query, id);
+    public T selectById(T obj) {
+        List<T> list= null;
+        try {
+        String idColumn=getColumnName(obj,"Id");
+        Field field=DaoUtail.getFieldsFromObj(obj,true,idColumn).get(0);
+        field.setAccessible(true);
+        System.out.println("Constructed Query: " + idColumn);
+        String query  = "SELECT  * From " + this.tableName + " where "+idColumn+" = ?";
+            list = executeQuerry(query, field.get(obj));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
         if(list!=null){
             return list.get(0);
         }

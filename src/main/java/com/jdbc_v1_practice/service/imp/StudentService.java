@@ -21,9 +21,11 @@ public class StudentService implements Service<Student> {
        return this.studentDao.selectAll();
     }
     public Student getById(int id){
-        return this.studentDao.selectById(id);
+        Student student = new Student(id);
+        return this.studentDao.selectById(student);
     }
     public void delete(Student student){
         this.studentDao.delete(student);
     }
+
 }

@@ -5,7 +5,7 @@ import com.jdbc_v1_practice.modal.Book;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BookDao extends GeneralDao4<Book> {
+public class BookDao extends GeneralDao5<Book> {
 
     public BookDao() {
         super(Book.class);
@@ -20,7 +20,7 @@ public class BookDao extends GeneralDao4<Book> {
     @Override
     public Book convertToObject(ResultSet rs) {
         try {
-            return new Book(rs.getInt("id"),
+            return new Book(rs.getInt("book_id"),
                             rs.getString("name"),
                             rs.getString("author"),
                             rs.getString("description"));
