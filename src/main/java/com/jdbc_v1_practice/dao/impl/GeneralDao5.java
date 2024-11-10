@@ -5,7 +5,6 @@ import com.jdbc_v1_practice.annotation.Id;
 import com.jdbc_v1_practice.annotation.Table;
 import com.jdbc_v1_practice.dao.GeneralDao;
 import com.jdbc_v1_practice.util.DaoUtail;
-
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.sql.*;
@@ -211,7 +210,6 @@ public abstract class GeneralDao5<T> implements GeneralDao<T> {
                     return column.name();
                 }
             }
-
         }
         return null;
     }
