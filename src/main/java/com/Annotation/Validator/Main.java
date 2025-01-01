@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args)  {
         Employee employee = new Employee("Min Min");  // Invalid employee with null name
         Teacher teacher = new Teacher();
-
         try {
             Validator.validate(employee);
             Validator.validate(teacher);
